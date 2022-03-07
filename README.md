@@ -21,9 +21,11 @@ demon listを上から走査し、レベル名が一致したものがあれば�
 `-1`が指定されているかつdemon list上に同名のレベルが存在しない場合、レベルは圏外組に追加されます。
 
 例えば
-`r!pcommit Sonic Wave Infinity, :Spa:`
-`r!pcommit kowareta, :Cob:`
-`r!pcommit 1330X, :Blu: -1`
+```
+r!pcommit Sonic Wave Infinity, :Spa:
+r!pcommit kowareta, :Cob:
+r!pcommit 1330X, :Blu: -1
+```
 
 などのように使います。既にレコード上にあるもの、ないものは自動で判定して追加します。
 
@@ -37,7 +39,9 @@ demon listを上から走査し、レベル名が一致したものがあれば�
 `player-icon`が指定されている場合、同名レベルの中で、該当の`player-icon`のみを削除します。`player-icon`が削除されることで、該当のレベルからレコードが消える場合はレベルも消えます。
 
 例えば
-`r!pdelete SonicWaVe`
-`r!pdelete Slaughterhouse :Kip:`
+```
+r!pdelete SonicWaVe
+r!pdelete Slaughterhouse :Kip:
+```
 
 などのように使います。
