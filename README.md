@@ -5,16 +5,22 @@
 r!p
 r!pcommit
 r!pdelete
+
+r!c
+r!ccommit
+r!cdelete
 ```
 
 ## **各コマンドの説明**
 
 ### `r!p`
-レコードを表示します。
+プレイヤーレコードを表示します。
 
 ### `r!pcommit`
 レコードを追加します。引数は次の通りです。
-`r!pcommit level-name, player-icon [-1]`
+```
+r!pcommit level-name, player-icon [-1]
+```
 
 demon listを上から走査し、レベル名が一致したものがあればその場所にレコードを追加します。同名のレベルが存在しないかつ`-1`が指定されていない場合その旨が報告されます。
 
@@ -31,7 +37,9 @@ r!pcommit 1330X, :Blu: -1
 
 ### `r!pdelete`
 レコードを削除します。引数は次の通りです。
-`r!pdelete level-name, [player-icon]`
+```
+r!pdelete level-name, [player-icon]
+```
 
 `player-icon`はオプションです。
 `player-icon`が指定されていない場合、レコードから同名レベルを見つけ、そのレコードを削除します。
@@ -45,3 +53,30 @@ r!pdelete Slaughterhouse :Kip:
 ```
 
 などのように使います。
+
+### `r!c`
+クリエイターレコードを表示します
+
+### `r!ccommit`
+レコードを追加します。引数は次の通りです。
+```
+r!ccommit level-name, creator-name, creator-icon, level-id, [video-link]
+```
+
+`video-link`はレベルのプレイ動画がある場合に指定することで、レコードに動画へのリンクが貼られます。
+
+例えば
+```
+r!ccommit Level 21, Spaces, :Spa:, 11221122
+r!ccommit Rated Level, Spaces, :Spa:, 22112211, youtube.link
+```
+などのように使います。
+`pcommit`とは異なり、全ての引数をカンマ区切りする必要があることに気を付けてください。
+
+### `r!cdelete`
+レコードを削除します。引数は次の通りです。
+```
+r!cdelete level-name
+```
+
+該当レベルと同名のレベルをレコードから削除します。レコードにレベルが存在しない場合は何もしません。
