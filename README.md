@@ -9,6 +9,7 @@ r!pdelete
 r!c
 r!ccommit
 r!cdelete
+r!cmodify
 ```
 
 ## **各コマンドの説明**
@@ -80,3 +81,31 @@ r!cdelete level-name
 ```
 
 該当レベルと同名のレベルをレコードから削除します。レコードにレベルが存在しない場合は何もしません。
+例えば
+```
+r!cdelete GameTIMe
+```
+などのように使います。
+
+### `r!cmodify`
+レコードの情報を編集します。引数は次の通りです。
+```
+r!cmodify level-name, option, modified
+```
+
+`option`には以下の五つを指定できます
+```
+LNAME - レベル名
+CNAME - クリエイターの名前
+CICON - クリエイターのアイコン
+ID    - レベルID
+LINK  - 動画へのリンク
+```
+
+`option`で指定されたフィールドを`modified`に書き換えます。
+
+例えば
+```
+r!cmodify FFOOFF, LNAME, FF00FF
+```
+などのように使います。
