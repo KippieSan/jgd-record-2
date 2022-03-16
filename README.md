@@ -6,6 +6,8 @@ r!p
 r!pcommit
 r!pdelete
 
+r!update
+
 r!c
 r!ccommit
 r!cdelete
@@ -54,6 +56,15 @@ r!pdelete Slaughterhouse :Kip:
 ```
 
 などのように使います。
+
+### `r!update`
+Demonlistがアップデートされた際に使います。
+より正確にはbotが置いてあるサーバーのチャンネルに最新のDemonlistをアップロードした際に、手動でbot内のplayer-record及びdemonlistを更新するために使います。
+Heroku(botを24/365で動かすためのツール)が1日に1回botを再起動するのでその際に情報の更新は行われますが、レコードの更新が重なった際にDemonlistの情報の反映のために1日待つ必要があったため追加しました。
+```
+r!update
+```
+
 
 ### `r!c`
 クリエイターレコードを表示します
