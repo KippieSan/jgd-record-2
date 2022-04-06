@@ -7,32 +7,17 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**バグの詳細**
+どのようなバグなのかを記述してください
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**バグの再現**
+バグの再現方法を以下に記述してください
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**再現時の挙動**
+上記の操作を行った際に起こると予想されるバグを記述してください
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**スクショなど**
+あれば尚よいです
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+**そのほか**
+何かあればここに記述してください。
