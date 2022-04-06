@@ -1,3 +1,7 @@
+# JGD Record
+[Japan Geometry Dash](https://discord.gg/G3ACWnU)のPlayer-Records及びCreator-Recordsを管理するbotです。
+定数以外のコードはここで公開しているのでバグ等を見つけた場合は上のサーバーの`#suggestion`や`#general`などで報告していただけると幸いです。
+
 # JGD Recordの使い方
 
 ## **現在使えるコマンド一覧**
