@@ -1,6 +1,7 @@
 import discord
 import update_demonlist as update
 import commit_player_record as pcommit
+import commit_player_record_list as plcommit
 import commit_creator_record as ccommit
 import delete_player_record as pdelete
 import delete_creator_record as cdelete
@@ -26,42 +27,6 @@ pstr = ''
 cstr = ''
 
 client = discord.Client()
-
-
-@client.event
-async def on_ready():
-    print("Active")
-    #with open(AVATAR, 'rb') as f:
-        #await client.user.edit(username=str('JGD Records'), avatar=f.read())
-    # チャンネルの設定
-    demonlist_data = client.get_channel(DEMONLIST)
-    precord_data = client.get_channel(PRECORD)
-    crecord_data = client.get_channel(CRECORD)
-    # レコードデータのあるメッセージのID取得
-    did = demonlist_data.last_message_id
-    pid = precord_data.last_message_id
-    cid = crecord_data.last_message_id
-    # 実際のメッセージの取得
-    demonlist = await demonlist_data.fetch_message(did)
-    precord = await precord_data.fetch_message(pid)
-    crecord = await crecord_data.fetch_message(cid)
-    # メッセージからtxt byteデータの取得
-    dbyte_data = await demonlist.attachments[0].read()
-    pbyte_data = await precord.attachments[0].read()
-    cbyte_data = await crecord.attachments[0].read()
-    # byteデータをstrに変換
-    global dstr
-    global cstr
-    dstr      = dbyte_data.decode()
-    pstr_data = pbyte_data.decode()
-    cstr      = cbyte_data.decode()
-    # リストを更新
-    global pstr
-    pstr = update.update_list(dstr, pstr_data)
-    print(pstr)
-    print(cstr)
-    print("Initialization Completed\n")
-    pass
 
 
 @client.event
@@ -111,7 +76,33 @@ async def on_message(message):
                 else:
                     pstr = update.update_list(dstr, new_precord)
                     await message.channel.send(">>> レコードを更新しました")
-
+            
+            # 'plcommit': リスト形式でのレコード追加
+            case 'plcommit':
+                if permi.manage_channels != True:
+                    await message.channel.send(">>> **このコマンドはヘルパー以上の役職を持っていないと使うことはできません**")
+                    return
+                new_precord, player_exists, not_changed = plcommit.commit_player_record_list(msg[len('r!plcommit '):], pstr)
+                with open(PPATH,"w") as record_file:
+                    record_file.write(new_precord)
+                await precord_data.send(file=discord.File(PPATH))
+                # 既に追加されているレベルの表示
+                if len(player_exists) != 0:
+                    await message.channel.send(">>> 以下のレベルについてプレイヤーは既に追加されています")
+                    player_exists_level_list = ''
+                    for level in player_exists:
+                        player_exists_level_list += level + ' '
+                    await message.channel.send(">>> " + player_exists_level_list + "\n")
+                # リストに存在しないレベルの表示
+                if len(not_changed) != 0:
+                    await message.channel.send(">>> 以下のレベルはリストに存在しません。リスト内であればレベル名の確認、圏外であれば各個'pcommit'を使ってレコードを追加してください")
+                    levels_not_exist_on_list = ''
+                    for level in not_changed:
+                        levels_not_exist_on_list += level + ' '
+                    await message.channel.send(">>> " + levels_not_exist_on_list + "\n")
+                # リストの更新
+                pstr = update.update_list(dstr, new_precord)
+                await message.channel.send(">>> レコードを更新しました")
             # 'pdelete': レコード削除
             case 'pdelete':
                 if permi.manage_channels != True:
