@@ -8,6 +8,7 @@
 ```
 r!p
 r!pcommit
+r!plcommit
 r!pdelete
 
 r!update
@@ -41,6 +42,25 @@ r!pcommit 1330X, :Blu: -1
 ```
 
 などのように使います。既にレコード上にあるもの、ないものは自動で判定して追加します。
+
+### `r!plcommit`
+レコードをリスト形式で追加します。引数は次の通りです。
+```
+r!plcommit level1, level2, level3,..., leveln, player-icon
+```
+
+`r!pcommit`を各レベルで呼び出し、levelに既に追加されているレベルがあれば、そのレベルのリストを、
+存在しないレベルがあれば、そのレベルのリストを出力します。
+`-1`オプションはリスト内にあるレベルの名称を間違えていた場合`Blood BAth`が圏外にあるといったことが起こるので現在は
+サポートされていません。
+
+カンマ直後に1マスのスペースがある場合はトリミングされます。
+
+例えば
+```
+r!plcommit Sonic Wave, Sonic Wave Infinity, Generic Wave,Sonic Wave Rebirth, :Spa:
+```
+などのように使います。
 
 ### `r!pdelete`
 レコードを削除します。引数は次の通りです。
