@@ -1,4 +1,4 @@
-import const
+import constant as const
 # <:icon-name:int>
 BLU = const.BLU
 COB = const.COB
@@ -22,11 +22,20 @@ SUK = const.SUK
 UME = const.UME
 YOG = const.YOG
 AJI = const.AJI
+SHO = const.SHO
+JUN = const.JUN
+MSC = const.MSC
+DRI = const.DRI
+ESP = const.ESP
+CAZ = const.CAZ
+UMI = const.UMI
 
-ICON_DICT ={':Blu:':  0, ':Cob:':  1, ':Eie:':  2, ':Evi:':  3, ':Ice:':  4, ':Kip:':  5, ':Kju:':  6, ':Kmr:':  7, ':Mas:':  8, ':Mat:':  9,
-            ':Mil:': 10, ':Neo:': 11, ':Pel:': 12, ':Ryo:': 13, ':Ryu:': 14, ':Sim:': 15, ':Skr:': 16, ':Spa:': 17, ':Suk:': 18, ':Ume:': 19,
-            ':Yog:': 20, ':Aji:' : 21}
-ICON_LIST =[BLU, COB, EIE, EVI, ICE, KIP, KJU, KMR, MAS, MAT, MIL, NEO, PEL, RYO, RYU, SIM, SKR, SPA, SUK, UME, YOG, AJI]
+ICON_DICT = {':Blu:': 0, ':Cob:': 1, ':Eie:': 2, ':Evi:': 3, ':Ice:': 4, ':Kip:': 5, ':Kju:': 6, ':Kmr:': 7, ':Mas:': 8, ':Mat:': 9,
+             ':Mil:': 10, ':Neo:': 11, ':Pel:': 12, ':Ryo:': 13, ':Ryu:': 14, ':Sim:': 15, ':Skr:': 16, ':Spa:': 17, ':Suk:': 18, ':Ume:': 19,
+             ':Yog:': 20, ':Aji:': 21, ':Sho:': 22, ':Jun:': 23, ':Msc:': 24, ':Dri:': 25, ':Esp:': 26, ':Caz:': 27, ':Umi:': 28}
+ICON_LIST = [BLU, COB, EIE, EVI, ICE, KIP, KJU, KMR, MAS, MAT,
+             MIL, NEO, PEL, RYO, RYU, SIM, SKR, SPA, SUK, UME,
+             YOG, AJI, SHO, JUN, MSC, DRI, ESP, CAZ, UMI]
 
 def icon_convert(player_icon: str):
     icon = ''

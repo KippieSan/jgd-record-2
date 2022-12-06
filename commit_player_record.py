@@ -10,14 +10,15 @@ def command_divided(command: str):
     command_list = command.split(',')
     return command_list
 
-def commit_player_record(command: str, record: str):
-    command_list = command_divided(command)
-    level, icon = command_list
-    out_of_range = False
+def commit_player_record(command: list, record: str):
+    # command_list = command_divided(command)
+    level, icon, listed = command
+
+    '''
     if len(icon.split()) == 2:
         icon = icon.split()[0]
         out_of_range = True
-
+    '''
     icon = ic.icon_convert(icon)
     new_record = ''
     is_exist = False
@@ -36,8 +37,8 @@ def commit_player_record(command: str, record: str):
                     new_record += rlevel + ',' + rposition + ',' + ricons + ' ' + icon + '\n'
         elif ricons != '-':
             new_record += level_data + '\n'
-    
-    if not is_exist and out_of_range:
+
+    if not is_exist and not changed and not listed:
         changed = True
         new_record += level + ',-1,' + icon + '\n'
     return [new_record, is_exist, changed]

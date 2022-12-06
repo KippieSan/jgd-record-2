@@ -7,7 +7,7 @@ option: LNAME CNAME CICON ID LINK
 
 def modify_creator_record(command: str, record: str):
     if len(command.split(',')) != 3:
-        return [ record, False, True ]
+        return [record, False, True]
     level, option, modified = command.split(',')
     option = option.split()[0]
     changed = False
@@ -17,7 +17,7 @@ def modify_creator_record(command: str, record: str):
         rlevel, rcreator, ricon, rid, rlink = level_data.split(',')
 
         if rlevel == level:
-            match(option):
+            match option:
                 case 'LNAME':
                     changed = True
                     new_record += modified + ',' + rcreator + ',' + ricon + ',' + rid + ',' + rlink + '\n'
@@ -37,4 +37,4 @@ def modify_creator_record(command: str, record: str):
                     invalid_option = True
         else:
             new_record += level_data + '\n'
-    return [ new_record, changed, invalid_option ]
+    return [new_record, changed, invalid_option]

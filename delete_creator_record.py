@@ -12,4 +12,4 @@ def delete_creator_record(command: str, record: str):
             deleted = True
         else:
             new_record += level_data + '\n'
-    return [ new_record, deleted ]
+    return [new_record, deleted]

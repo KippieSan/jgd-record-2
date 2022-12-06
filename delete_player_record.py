@@ -15,7 +15,7 @@ def delete_player_record(command: str, record: str):
         icon = ic.icon_convert(icon)
     else:
         level = command_list[0]
-    
+
     print(level + " " + icon)
 
     new_record = ''

@@ -17,6 +17,5 @@ def commit_player_record_list(command: str, record: str):
             player_exists.append(level)
         elif not changed:
             not_changed.append(level)
-    
-    return [new_record, player_exists, not_changed]
 
+    return [new_record, player_exists, not_changed]

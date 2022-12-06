@@ -17,5 +17,5 @@ def get_creator_record(crecord: str):
         has_link = True
         if link == '-':
             has_link = False
-        record_list.append([ level, creator, icon, id, link, has_link ])
+        record_list.append([level, creator, icon, id, link, has_link])
     return record_list

@@ -30,8 +30,7 @@ def get_player_record(precord: str):
     extended = header_list[1]
     legacy = header_list[2]
     other = header_list[3]
-    
-    
+
     for list_data in precord.splitlines():
         level, position, icons = list_data.split(',')
         pos = int(position)
@@ -47,7 +46,7 @@ def get_player_record(precord: str):
             extended_passed = True
         elif not legacy_passed and pos == -1:
             legacy_passed = True
-        
+
         if not main_passed:
             main += (level + picon + '\n')
         elif not extended_passed:
@@ -56,15 +55,15 @@ def get_player_record(precord: str):
             legacy += (level + picon + '\n')
         else:
             other += (level + picon + '\n')
-    
+
     main += '\n'
     extended += '\n'
     legacy += '\n'
     other += '\n'
 
-    main_list, lm       = divide_under_limit(main, 0)
-    extended_list, le   = divide_under_limit(extended, lm)
-    legacy_list, ll     = divide_under_limit(legacy, le)
-    other_list, _       = divide_under_limit(other, ll)
+    main_list, lm = divide_under_limit(main, 0)
+    extended_list, le = divide_under_limit(extended, lm)
+    legacy_list, ll = divide_under_limit(legacy, le)
+    other_list, _ = divide_under_limit(other, ll)
 
     return [main_list, extended_list, legacy_list, other_list]
