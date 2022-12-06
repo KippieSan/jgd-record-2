@@ -293,11 +293,11 @@ async def cdelete(ctx: discord.Interaction, level: str):
 
 
 class Options(enum.Enum):
-    LNAME = 'LNAME'
-    CNAME = 'CNAME'
-    CICON = 'CICON'
+    LevelName = 'LNAME'
+    CreatorName = 'CNAME'
+    CreatorIcon = 'CICON'
     ID = 'ID'
-    LINK = 'LINK'
+    VideoLink = 'LINK'
 
 
 @tree.command(name='cmodify', description='creator-recordsの情報を編集します.')
@@ -312,7 +312,7 @@ async def cmodify(ctx: discord.Interaction, level: str, option: Options, modifie
     if ctx.permissions.manage_messages is not True:
         await ctx.followup.send(">>> **このコマンドはヘルパー以上の役職を持っていないと使うことはできません.**")
         return
-    if option == Options.CICON:
+    if option == Options.CreatorIcon:
         converted = icc.icon_convert(modified)
         if not (len(converted) == 5 and converted[0] == ':' and converted[-1] == ':' and converted[1].isupper() and converted[2].islower() and converted[3].islower()):
             await ctx.followup.send(">>> **アイコンは**`:Aaa:`**の形式で送信してください.** 送信されたアイコン -> `" + icc.icon_convert(modified) + '`')

@@ -16,7 +16,7 @@ def is_level_exists(level_name: str, pcstr: str):
         level = record.split(',')[0]
         if level == level_name:
             found = True
-    
+
     return found
 
 def icon_exist(icon: str):
