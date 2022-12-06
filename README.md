@@ -4,68 +4,70 @@
 
 # JGD Recordの使い方
 
+**2022/11/22にスラッシュコマンドへの対応を行ったため, 各コマンドの詳細がコマンド選択時, 引数の説明が引数の入力時に表示されるようになりました.**
+
 ## **現在使えるコマンド一覧**
 ```
-r!p
-r!pcommit
-r!plcommit
-r!pdelete
+/p
+/pcommit
+r/plcommit
+/pdelete
 
-r!update
+/update
 
-r!c
-r!ccommit
-r!cdelete
-r!cmodify
+/c
+/ccommit
+/cdelete
+/cmodify
 ```
 
 ## **各コマンドの説明**
 
-### `r!p`
+### `/p`
 プレイヤーレコードを表示します。
 
-### `r!pcommit`
+### `/pcommit`
 レコードを追加します。引数は次の通りです。
 ```
-r!pcommit level-name, player-icon [-1]
+/pcommit level-name, player-icon, is_listed
 ```
 
-demon listを上から走査し、レベル名が一致したものがあればその場所にレコードを追加します。同名のレベルが存在しないかつ`-1`が指定されていない場合その旨が報告されます。
-
-`-1`が指定されているかつdemon list上に同名のレベルが存在しない場合、レベルは圏外組に追加されます。
+demon listを上から走査し、レベル名が一致したものがあればその場所にレコードを追加します。同名のレベルが存在しないかつ`is_listed=True`である場合その旨が報告されます。
+`is_listed=False`が指定されているかつdemon list上に同名のレベルが存在しない場合、レベルは圏外組に追加されます。
+`is_listed`はデフォルトでは`True`に設定されています
 
 例えば
 ```
-r!pcommit Sonic Wave Infinity, :Spa:
-r!pcommit kowareta, :Cob:
-r!pcommit 1330X, :Blu: -1
+/pcommit Sonic Wave Infinity, :Spa:
+/pcommit kowareta, :Cob:
+/pcommit 1330X, :Blu:, False
 ```
 
 などのように使います。既にレコード上にあるもの、ないものは自動で判定して追加します。
 
-### `r!plcommit`
+### `/plcommit`
 レコードをリスト形式で追加します。引数は次の通りです。
 ```
-r!plcommit level1, level2, level3,..., leveln, player-icon
+/plcommit level1, level2, level3,..., leveln, player-icon
 ```
 
-`r!pcommit`を各レベルで呼び出し、levelに既に追加されているレベルがあれば、そのレベルのリストを、
+`/pcommit`を各レベルで呼び出し、levelに既に追加されているレベルがあれば、そのレベルのリストを、
 存在しないレベルがあれば、そのレベルのリストを出力します。
-`-1`オプションはリスト内にあるレベルの名称を間違えていた場合`Blood BAth`が圏外にあるといったことが起こるので現在は
+`is_listed`オプションはリスト内にあるレベルの名称を間違えていた場合`Blood BAth`が圏外にあるといったことが起こるので現在は
 サポートされていません。
 
 カンマ直後に1マスのスペースがある場合はトリミングされます。
 
 例えば
 ```
-r!plcommit Sonic Wave, Sonic Wave Infinity, Generic Wave,Sonic Wave Rebirth, :Spa:
+/plcommit Sonic Wave, Sonic Wave Infinity, Generic Wave,Sonic Wave Rebirth, :Spa:
 ```
 などのように使います。
 
-### `r!pdelete`
+### `/pdelete`
 レコードを削除します。引数は次の通りです。
 ```
-r!pdelete level-name, [player-icon]
+/pdelete level-name, [player-icon]
 ```
 
 `player-icon`はオプションです。
@@ -75,57 +77,58 @@ r!pdelete level-name, [player-icon]
 
 例えば
 ```
-r!pdelete SonicWaVe
-r!pdelete Slaughterhouse :Kip:
+/pdelete SonicWaVe
+/pdelete Slaughterhouse :Kip:
 ```
 
 などのように使います。
 
-### `r!update`
+### `/update`
 Demonlistがアップデートされた際に使います。
-より正確にはbotが置いてあるサーバーのチャンネルに最新のDemonlistをアップロードした際に、手動でbot内のplayer-record及びdemonlistを更新するために使います。
-Heroku(botを24/365で動かすためのツール)が1日に1回botを再起動するのでその際に情報の更新は行われますが、レコードの更新が重なった際にDemonlistの情報の反映のために1日待つ必要があったため追加しました。
+Demonlistを[pointercrate](https://pointercrate.com/demonlist/)より取得し, DemonlistおよびPlayer Recordsのアップデートを行います
 ```
-r!update
+/update
 ```
 
 
-### `r!c`
+### `/c`
 クリエイターレコードを表示します
 
-### `r!ccommit`
+### `/ccommit`
 レコードを追加します。引数は次の通りです。
 ```
-r!ccommit level-name, creator-name, creator-icon, level-id, [video-link]
+r!ccommit level-name, creator-name, creator-icon, level-id, [video-link], [insert_after]
 ```
 
 `video-link`はレベルのプレイ動画がある場合に指定することで、レコードに動画へのリンクが貼られます。
+`insert_after`はレベルをリストの途中に追加したいときにここにレベルを指定することで, このレベルの直後にレコードを追加します.
 
 例えば
 ```
-r!ccommit Level 21, Spaces, :Spa:, 11221122
-r!ccommit Rated Level, Spaces, :Spa:, 22112211, youtube.link
+/ccommit Level 21, Spaces, :Spa:, 11221122
+/ccommit Rated Level, Spaces, :Spa:, 22112211, link = youtube.link
+/ccommit Test Level, Kippie, :Kip:, 11111111, insert_after = GAME TIME
+/ccommit Test Level2, Kippie, :Kip:, 111111222, link = youtube.link, insert_after = Optimism
 ```
 などのように使います。
-`pcommit`とは異なり、全ての引数をカンマ区切りする必要があることに気を付けてください。
 
-### `r!cdelete`
+### `/cdelete`
 レコードを削除します。引数は次の通りです。
 ```
-r!cdelete level-name
+/cdelete level-name
 ```
 
 該当レベルと同名のレベルをレコードから削除します。レコードにレベルが存在しない場合は何もしません。
 例えば
 ```
-r!cdelete GameTIMe
+/cdelete GameTIMe
 ```
 などのように使います。
 
-### `r!cmodify`
+### `/cmodify`
 レコードの情報を編集します。引数は次の通りです。
 ```
-r!cmodify level-name, option, modified
+/cmodify level-name, option, modified
 ```
 
 `option`には以下の五つを指定できます
@@ -141,6 +144,6 @@ LINK  - 動画へのリンク
 
 例えば
 ```
-r!cmodify FFOOFF, LNAME, FF00FF
+/cmodify FFOOFF, LNAME, FF00FF
 ```
 などのように使います。
