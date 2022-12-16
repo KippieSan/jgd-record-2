@@ -10,7 +10,7 @@
 ```
 /p
 /pcommit
-r/plcommit
+/plcommit
 /pdelete
 
 /update
@@ -97,7 +97,7 @@ Demonlistを[pointercrate](https://pointercrate.com/demonlist/)より取得し, 
 ### `/ccommit`
 レコードを追加します。引数は次の通りです。
 ```
-r!ccommit level-name, creator-name, creator-icon, level-id, [video-link], [insert_after]
+/ccommit level-name, creator-name, creator-icon, level-id, [video-link], [insert_after]
 ```
 
 `video-link`はレベルのプレイ動画がある場合に指定することで、レコードに動画へのリンクが貼られます。
