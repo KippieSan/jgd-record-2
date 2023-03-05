@@ -404,7 +404,9 @@ async def purge(ctx: discord.Interaction, n: int):
     if ctx.permissions.manage_messages is not True:
         await ctx.followup.send(">>> **このコマンドはヘルパー以上の役職を持っていないと使うことはできません.**")
         return
-    deleted = await ctx.channel.purge(limit=n)
+    def not_info(m):
+        return not m.pinned
+    deleted = await ctx.channel.purge(limit=n, check=not_info)
     await ctx.followup.send((">>> メッセージを{}件削除しました.".format(len(deleted))))
     # await ctx.delete_original_response()
 
